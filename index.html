@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>CPU Scheduling Simulator</h1>
+        <p>CSE513 - Assignment 1</p>
+
+        <section>
+            <h2>Add a Process</h2>
+
+            <form id="process-form">
+                <label for="process-id">Process ID</label>
+                <input id="process-id" type="text" placeholder="e.g. P1" required>
+
+                <label for="arrival-time">Arrival Time</label>
+                <input id="arrival-time" type="number" min="0" step="1" required>
+
+                <label for="burst-time">CPU Burst</label>
+                <input id="burst-time" type="number" min="1" step="1" required>
+
+                <div>
+                    <button id="submit-process" type="submit">Add Process</button>
+                    <button id="cancel-edit" type="button" class="secondary" hidden>Cancel</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>Process List</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Process</th>
+                            <th>Arrival</th>
+                            <th>CPU Burst</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="process-table"></tbody>
+                </table>
+            </div>
+
+            <button id="load-example" type="button">Load Workload A</button>
+            <button id="load-example-b" type="button">Load Workload B</button>
+            <button id="clear-all" type="button" class="secondary">Clear All</button>
+        </section>
+
+        <section>
+            <h2>Scheduling Algorithm</h2>
+
+            <label for="algorithm">Choose an algorithm</label>
+            <select id="algorithm">
+                <option value="FCFS">FCFS</option>
+                <option value="SJF">SJF (Non-preemptive)</option>
+                <option value="SRTF">SRTF (Preemptive)</option>
+                <option value="RR">Round Robin (RR)</option>
+            </select>
+
+            <div id="quantum-container" hidden>
+                <label for="quantum">Time Quantum</label>
+                <input id="quantum" type="number" min="1" step="1" value="2">
+            </div>
+
+            <button id="run-scheduler" type="button">Run Simulation</button>
+
+            <p id="error-message" class="error" role="alert"></p>
+        </section>
+
+        <section id="results" hidden>
+            <h2>Gantt Chart</h2>
+            <div id="gantt-chart" class="gantt-chart"></div>
+
+            <h2>Process Metrics</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Process</th>
+                            <th>Arrival</th>
+                            <th>Burst</th>
+                            <th>First Start</th>
+                            <th>Completion</th>
+                            <th>Turnaround</th>
+                            <th>Waiting</th>
+                            <th>Response</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-table"></tbody>
+                </table>
+            </div>
+
+            <h2>Average Metrics</h2>
+            <p id="averages"></p>
+
+            <p id="verification" class="verification"></p>
+        </section>
+    </main>
+
+    <script src="scheduler.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
